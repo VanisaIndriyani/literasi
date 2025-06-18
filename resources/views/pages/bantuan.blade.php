@@ -5,7 +5,7 @@
 @section('content')
 <style>
     .help-header {
-        background: linear-gradient(45deg, #1a2a6c, #2B4C7E);
+        background: linear-gradient(45deg, #8B4513, #A0522D);
         padding: 100px 0 120px;
         margin-bottom: 70px;
         color: white;
@@ -133,8 +133,8 @@
 <!-- Update the header content -->
 <div class="help-header">
     <div class="container">
-        <h1 class="text-center display-4 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1)">Pusat Bantuan</h1>
-        <p class="text-center lead mb-0" style="font-size: 1.25rem; opacity: 0.9">Temukan jawaban untuk setiap pertanyaan Anda di sini</p>
+        <h1 class="text-center display-4 fw-bold mb-4" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1)">{{ $settings->header_title ?? 'Pusat Bantuan' }}</h1>
+        <p class="text-center lead mb-0" style="font-size: 1.25rem; opacity: 0.9">{{ $settings->header_subtitle ?? 'Temukan jawaban untuk setiap pertanyaan Anda di sini' }}</p>
     </div>
 </div>
 
@@ -159,8 +159,8 @@
                     <div class="category-icon bg-primary bg-opacity-10">
                         <i class="fas fa-book-reader fa-2x text-primary"></i>
                     </div>
-                    <h4 class="mb-3">Peminjaman Buku</h4>
-                    <p class="text-muted mb-4">Informasi tentang cara meminjam, mengembalikan, dan memperpanjang buku</p>
+                    <h4 class="mb-3">{{ $settings->category_1_title ?? 'Peminjaman Buku' }}</h4>
+                    <p class="text-muted mb-4">{{ $settings->category_1_description ?? 'Informasi tentang cara meminjam, mengembalikan, dan memperpanjang buku' }}</p>
                     <a href="#peminjaman" class="btn btn-outline-primary rounded-pill px-4">Pelajari Lebih Lanjut</a>
                 </div>
             </div>
@@ -171,8 +171,8 @@
                     <div class="category-icon bg-success bg-opacity-10">
                         <i class="fas fa-user-circle fa-2x text-success"></i>
                     </div>
-                    <h4 class="mb-3">Keanggotaan</h4>
-                    <p class="text-muted mb-4">Panduan mendaftar, memperbarui, dan mengelola akun anggota</p>
+                    <h4 class="mb-3">{{ $settings->category_2_title ?? 'Keanggotaan' }}</h4>
+                    <p class="text-muted mb-4">{{ $settings->category_2_description ?? 'Panduan mendaftar, memperbarui, dan mengelola akun anggota' }}</p>
                     <a href="#keanggotaan" class="btn btn-outline-success rounded-pill px-4">Pelajari Lebih Lanjut</a>
                 </div>
             </div>
@@ -183,8 +183,8 @@
                     <div class="category-icon bg-warning bg-opacity-10">
                         <i class="fas fa-search fa-2x text-warning"></i>
                     </div>
-                    <h4 class="mb-3">Pencarian Koleksi</h4>
-                    <p class="text-muted mb-4">Cara mencari dan menemukan buku dalam koleksi perpustakaan</p>
+                    <h4 class="mb-3">{{ $settings->category_3_title ?? 'Pencarian Koleksi' }}</h4>
+                    <p class="text-muted mb-4">{{ $settings->category_3_description ?? 'Cara mencari dan menemukan buku dalam koleksi perpustakaan' }}</p>
                     <a href="#pencarian" class="btn btn-outline-warning rounded-pill px-4">Pelajari Lebih Lanjut</a>
                 </div>
             </div>
@@ -267,20 +267,24 @@
     <!-- Contact Section -->
     <div class="text-center my-5 py-5">
         <div class="bg-light p-5 rounded-4 shadow-sm">
-            <h3 class="mb-4">Masih Butuh Bantuan?</h3>
-            <p class="text-muted mb-4">Tim kami siap membantu Anda melalui berbagai channel komunikasi</p>
+            <h3 class="mb-4">{{ $settings->contact_section_title ?? 'Masih Butuh Bantuan?' }}</h3>
+            <p class="text-muted mb-4">{{ $settings->contact_section_subtitle ?? 'Tim kami siap membantu Anda melalui berbagai channel komunikasi' }}</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="#" class="contact-button btn btn-outline-primary">
+                <a href="mailto:{{ $settings->contact_email ?? '#' }}" class="contact-button btn btn-outline-primary">
                     <i class="fas fa-envelope me-2"></i>Email
                 </a>
-                <a href="#" class="contact-button btn btn-outline-success">
+                <a href="{{ $settings->contact_whatsapp_link ?? '#' }}" class="contact-button btn btn-outline-success" target="_blank">
                     <i class="fab fa-whatsapp me-2"></i>WhatsApp
                 </a>
-                <a href="#" class="contact-button btn btn-outline-info">
+                <a href="{{ $settings->contact_telegram_link ?? '#' }}" class="contact-button btn btn-outline-info" target="_blank">
                     <i class="fab fa-telegram me-2"></i>Telegram
                 </a>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Map Section -->
+<!-- You can add a map embed code here if needed -->
+
 @endsection

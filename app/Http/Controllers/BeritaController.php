@@ -9,8 +9,9 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $berita = Berita::latest()->paginate(6);
-        return view('pages.berita', compact('berita'));
+        $beritaUtama = Berita::orderBy('created_at', 'desc')->first();
+        $beritaTerbaru = Berita::latest()->paginate(6);
+        return view('pages.berita', compact('beritaUtama', 'beritaTerbaru'));
     }
 
     public function show($id)

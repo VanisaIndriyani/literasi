@@ -30,7 +30,7 @@
                 <img src="{{ asset('images/banner/banner03.jpg') }}" class="d-block w-100" alt="Banner 3" style="height: 100vh; object-fit: cover;">
                 <div class="carousel-caption">
                     <h2 class="display-4 fw-bold">Fasilitas Lengkap</h2>
-                    <p class="lead">Dilengkapi dengan wifi gratis dan area diskusi</p>
+                    <p class="lead">Dilengkapi dengan loker dan area diskusi</p>
                 </div>
             </div>
         </div>
@@ -70,10 +70,10 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 bg-warning bg-gradient text-white text-center p-4 rounded-4">
-                <i class="fas fa-wifi fa-3x mb-3"></i>
-                <h3>GRATIS</h3>
-                <p class="mb-0">Fasilitas WiFi</p>
+            <div class="card border-0 bg-dark bg-gradient text-white text-center p-4 rounded-4">
+                <i class="fas fa-box fa-3x mb-3"></i>
+                <h3>TERSEDIA</h3>
+                <p class="mb-0">Loker Pribadi</p>
             </div>
         </div>
     </div>
@@ -84,69 +84,38 @@
     <h2 class="text-center mb-2">Pilih Subjek yang Menarik bagi Anda</h2>
     <p class="text-center text-muted mb-5">Temukan berbagai kategori buku sesuai minat Anda</p>
     <div class="row g-4 justify-content-center">
+        @foreach($categories as $category)
         <div class="col-6 col-md-2">
             <div class="card h-100 border-0 shadow-sm category-card">
                 <div class="card-body text-center">
-                    <div class="category-icon mb-3">
-                        <i class="fas fa-book text-primary"></i>
-                        <i class="fas fa-apple-alt text-danger position-relative" style="left: -8px; bottom: -5px; font-size: 0.8em;"></i>
+                    <div class="category-image-wrapper mb-3">
+                        @if($category->image)
+                            <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="img-fluid category-image">
+                        @else
+                            <!-- Fallback if no image is available -->
+                            <i class="fas fa-book fa-3x text-primary"></i>
+                        @endif
                     </div>
-                    <h6 class="mb-0">Kesusastraan</h6>
+                    <h6 class="mb-0">{{ $category->name }}</h6>
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-2">
-            <div class="card h-100 border-0 shadow-sm category-card">
-                <div class="card-body text-center">
-                    <div class="category-icon mb-3">
-                        <i class="fas fa-scroll text-info"></i>
-                        <i class="fas fa-certificate text-warning position-relative" style="left: -8px; bottom: -5px; font-size: 0.8em;"></i>
-                    </div>
-                    <h6 class="mb-0">Ilmu-ilmu Sosial</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-2">
-            <div class="card h-100 border-0 shadow-sm category-card">
-                <div class="card-body text-center">
-                    <div class="category-icon mb-3">
-                        <i class="fas fa-atom text-success"></i>
-                    </div>
-                    <h6 class="mb-0">Ilmu-ilmu Terapan</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-2">
-            <div class="card h-100 border-0 shadow-sm category-card">
-                <div class="card-body text-center">
-                    <div class="category-icon mb-3">
-                        <i class="fas fa-palette text-warning"></i>
-                        <i class="fas fa-running text-info position-relative" style="left: -8px; bottom: -5px; font-size: 0.8em;"></i>
-                    </div>
-                    <h6 class="mb-0">Kesenian, Hiburan, dan Olahraga</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-md-2">
-            <div class="card h-100 border-0 shadow-sm category-card">
-                <div class="card-body text-center">
-                    <div class="category-icon mb-3">
-                        <i class="fas fa-th text-secondary"></i>
-                    </div>
-                    <h6 class="mb-0">Lihat lainnya...</h6>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
-
 <style>
-    .category-icon {
-        font-size: 2.5rem;
+    .category-image-wrapper {
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
+    }
+
+    .category-image {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
     }
 
     .category-card {
@@ -154,7 +123,6 @@
         border-radius: 10px;
         transition: all 0.3s ease;
     }
-
     .category-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -165,6 +133,7 @@
         color: #666;
     }
 </style>
+
 
 <!-- Koleksi Populer -->
 <div class="container py-5">
@@ -189,29 +158,22 @@
     
     <div class="book-slider">
         <div class="row g-4">
-            @php
-                $books = [
-                    ['title' => 'Laskar Pelangi', 'author' => 'Andrea Hirata', 'icon' => 'book-open-reader', 'color' => 'primary'],
-                    ['title' => 'Bumi Manusia', 'author' => 'Pramoedya Ananta Toer', 'icon' => 'book-bookmark', 'color' => 'success'],
-                    ['title' => 'Dilan 1990', 'author' => 'Pidi Baiq', 'icon' => 'book', 'color' => 'danger'],
-                    ['title' => 'Pulang', 'author' => 'Tere Liye', 'icon' => 'book-atlas', 'color' => 'info'],
-                    ['title' => '5 cm', 'author' => 'Donny Dhirgantoro', 'icon' => 'book-medical', 'color' => 'warning'],
-                    ['title' => 'Negeri 5 Menara', 'author' => 'Ahmad Fuadi', 'icon' => 'book-journal-whills', 'color' => 'purple']
-                ];
-            @endphp
-
-            @foreach($books as $book)
+          @foreach($popularBooks as $book)
             <div class="col-6 col-md-2">
                 <div class="card h-100 border-0 shadow-sm book-card text-center">
-                    <div class="position-relative book-icon-wrapper bg-{{ $book['color'] }}">
-                        <i class="fas fa-{{ $book['icon'] }} book-icon text-white"></i>
+                    <div class="position-relative book-cover-wrapper">
+                        @if($book->cover)
+                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid book-cover" alt="{{ $book->title }}">
+                        @else
+                            <i class="fas fa-book book-icon text-white bg-{{ $book->color ?? 'secondary' }}"></i>
+                        @endif
                         <div class="popular-badge">
                             <i class="fas fa-star"></i> Populer
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-title mb-2 book-title">{{ $book['title'] }}</h6>
-                        <p class="text-muted small mb-0 author">{{ $book['author'] }}</p>
+                        <h6 class="card-title mb-2 book-title">{{ $book->title }}</h6>
+                        <p class="text-muted small mb-0 author">{{ $book->author }}</p>
                     </div>
                 </div>
             </div>
@@ -221,16 +183,32 @@
 </div>
 
 <style>
-    .book-icon-wrapper {
-        padding: 3rem 2rem;
+    .book-cover-wrapper {
+        padding: 1rem;
         position: relative;
         overflow: hidden;
         border-radius: 15px 15px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px; /* Adjust as needed */
+    }
+
+    .book-cover {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
 
     .book-icon {
         font-size: 4rem;
         transition: all 0.4s ease;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px 15px 0 0;
     }
 
     .book-card {
@@ -292,186 +270,51 @@
     }
 </style>
 
-@section('styles')
-<style>
-    /* Hero Section Styles */
-    .hero-section {
-        height: 100vh;
-        margin-top: -76px;
-        overflow: hidden;
-    }
-
-    .carousel-caption {
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 20px;
-        padding: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-        backdrop-filter: blur(5px);
-    }
-
-    .hero-slider img {
-        height: 100vh;
-        object-fit: cover;
-        filter: brightness(0.6);
-    }
-
-    /* Card Styles */
-    .stat-card {
-        border: none;
-        border-radius: 15px;
-        overflow: hidden;
-        transition: all 0.4s ease;
-    }
-
-    .stat-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
-    .stat-card i {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        opacity: 0.9;
-    }
-
-    .counter {
-        font-size: 2.8rem;
-        font-weight: 700;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    }
-
-    /* Category Section */
-    .category-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-radius: 20px;
-        padding: 3rem 0;
-        margin: 2rem 0;
-    }
-
-    .category-card {
-        background: white;
-        border-radius: 15px;
-        transition: all 0.4s ease;
-        border: none;
-    }
-
-    .category-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-    }
-
-    /* Book Section */
-    .book-card {
-        border: none;
-        border-radius: 15px;
-        overflow: hidden;
-        transition: all 0.4s ease;
-    }
-
-    .book-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-    }
-
-    .book-card img {
-        height: 280px;
-        object-fit: cover;
-        transition: all 0.4s ease;
-    }
-
-    .book-card:hover img {
-        transform: scale(1.05);
-    }
-
-    .badge {
-        font-size: 0.8rem;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-    }
-
-    /* Location Section */
-    .location-card {
-        border-radius: 20px;
-        overflow: hidden;
-    }
-
-    .social-btn {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
-    }
-
-    .social-btn:hover {
-        transform: translateY(-5px);
-    }
-
-    .stars {
-        color: #ffd700;
-        font-size: 1.2rem;
-    }
-
-    /* Carousel Controls */
-    .carousel-control-prev, .carousel-control-next {
-        width: 5%;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-
-    .carousel:hover .carousel-control-prev,
-    .carousel:hover .carousel-control-next {
-        opacity: 1;
-    }
-
-    .carousel-indicators {
-        bottom: 40px;
-    }
-
-    .carousel-indicators button {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin: 0 5px;
-    }
-
-    .book-icon-wrapper {
-        padding: 2rem;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-
-    .book-icon {
-        font-size: 5rem;
-        color: var(--primary-color);
-        opacity: 0.8;
-        transition: all 0.4s ease;
-    }
-
-    .book-card:hover .book-icon {
-        transform: scale(1.1);
-        opacity: 1;
-        color: var(--secondary-color);
-    }
-</style>
-@endsection
-
-@section('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Inisialisasi carousel
-    new bootstrap.Carousel(document.querySelector('#heroCarousel'), {
-        interval: 5000,
-        ride: true
-    });
-});
-</script>
-@endsection
-
 <!-- Koleksi Populer section ends -->
+
+<!-- Daftar Koleksi Lengkap Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="position-relative d-inline-block mb-2">
+            Daftar Koleksi Lengkap
+            <span class="position-absolute w-50 h-2 bg-primary" style="bottom: -5px; left: 25%; transform: translateX(-50%);"></span>
+        </h2>
+        <p class="text-muted">Jelajahi seluruh koleksi buku yang tersedia di Ruang Literasi</p>
+    </div>
+
+    <!-- Search Form -->
+    <form method="GET" action="{{ route('beranda') }}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Cari judul buku..." value="{{ request('q') }}">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i> Cari
+            </button>
+        </div>
+    </form>
+
+    @if($books->isEmpty())
+        <div class="alert alert-info" role="alert">
+            Belum ada buku yang tersedia dalam koleksi lengkap.
+        </div>
+    @else
+        <div class="row g-4">
+            @foreach($books as $book)
+            <div class="col-6 col-md-2">
+                <div class="card h-100 border-0 shadow-sm book-card text-center">
+                    <div class="position-relative book-cover-wrapper">
+                        <i class="fas fa-book book-icon text-white bg-{{ $book->color ?? 'secondary' }}"></i> <!-- Default icon -->
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title mb-2 book-title">{{ $book->title ?? 'N/A' }}</h6>
+                        <p class="text-muted small mb-0 stock">Stok: {{ $book->stock ?? 'N/A' }}</p>
+                        <p class="text-muted small mb-0 description">{{ Str::limit($book->description, 50) ?? 'N/A' }}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    @endif
+</div>
 
 <!-- Location Maps Section -->
 <div class="container-fluid py-5 bg-light">

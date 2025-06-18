@@ -5,11 +5,11 @@
 @section('content')
 <style>
     .login-header {
-        background: linear-gradient(45deg, #1a2a6c, #2B4C7E);
+        background: linear-gradient(45deg, #8B4513, #A0522D);
         padding: 80px 0;
         color: white;
         border-radius: 0 0 100px 100px;
-        box-shadow: 0 10px 30px rgba(26, 42, 108, 0.2);
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.2);
         position: relative;
         overflow: hidden;
     }
@@ -43,32 +43,44 @@
     }
 
     .form-control:focus {
-        border-color: #1a2a6c;
-        box-shadow: 0 0 0 0.2rem rgba(26, 42, 108, 0.15);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.15);
     }
 
     .btn-login {
         padding: 12px 30px;
         border-radius: 10px;
-        background: linear-gradient(45deg, #1a2a6c, #2B4C7E);
+        background: linear-gradient(45deg, #8B4513, #A0522D);
         border: none;
         transition: all 0.3s ease;
     }
 
     .btn-login:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(26, 42, 108, 0.2);
+        box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+    }
+
+    .text-primary {
+        color: var(--primary-color) !important;
     }
 
     .help-text {
         font-size: 0.9rem;
-        color: #6c757d;
+        color: var(--dark-color);
+        opacity: 0.8;
     }
 
-    .divider {
-        height: 1px;
-        background: #e9ecef;
-        margin: 1.5rem 0;
+    a {
+        color: var(--primary-color);
+    }
+
+    a:hover {
+        color: var(--accent-color);
+    }
+
+    .form-check-input:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
     }
 </style>
 
@@ -90,6 +102,16 @@
 
             <form action="{{ route('login.process') }}" method="POST">
                 @csrf
+                <!-- After the form opening tag -->
+                @if($errors->any())
+                    <div class="alert alert-danger mb-4">
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="mb-4">
                     <label for="member_id" class="form-label">ID Anggota</label>
                     <div class="input-group">
@@ -124,16 +146,13 @@
                     <i class="fas fa-sign-in-alt me-2"></i>Masuk
                 </button>
 
-                <div class="divider"></div>
-
                 <div class="text-center">
-                    <p class="help-text mb-0">
-                        Belum memiliki akun? Silakan hubungi petugas perpustakaan
+                    <p class="text-muted mb-0">
+                        Belum memiliki akun? 
+                        <a href="{{ route('register') }}" class="text-decoration-none">Daftar di sini</a>
                     </p>
-                    <a href="#" class="text-decoration-none">
-                        <i class="fas fa-info-circle me-1"></i>Bantuan
-                    </a>
                 </div>
+
             </form>
         </div>
     </div>

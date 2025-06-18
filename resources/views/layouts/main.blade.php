@@ -8,57 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1a73e8;
-            --secondary-color: #185abc;
-            --accent-color: #ffd700;
-            --dark-color: #1f2937;
+            --primary-color: #8B4513;    /* Dark brown */
+            --secondary-color: #DEB887;   /* Burlywood */
+            --accent-color: #D2691E;      /* Chocolate */
+            --dark-color: #654321;        /* Saddle brown */
+            --cream-color: #FFF8DC;       /* Cornsilk */
+            --light-brown: #DEB887;       /* Burlywood */
+            --gradient-brown: linear-gradient(135deg, #8B4513, #A0522D);
         }
         
         body {
             font-family: 'Poppins', sans-serif;
             padding-top: 76px;
+            background-color: var(--cream-color);
         }
 
         .navbar {
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
             padding: 1rem 0;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            background: rgba(139, 69, 19, 0.95) !important; /* Brown navbar */
         }
 
         .navbar-brand .brand-icon {
             font-size: 2.2rem;
-            background: linear-gradient(45deg, var(--accent-color), #ff9900);
+            background: linear-gradient(45deg, var(--cream-color), var(--light-brown));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-link {
-            font-weight: 500;
-            padding: 0.6rem 1.2rem !important;
-            margin: 0 0.3rem;
-            border-radius: 25px;
-            transition: all 0.4s ease;
-        }
-
-        .nav-link:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-        }
-
-        .nav-link.active {
-            background: rgba(255,255,255,0.2);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
         .btn-member {
-            background: linear-gradient(45deg, var(--accent-color), #ff9900);
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
             border: none;
-            color: var(--dark-color);
+            color: var(--cream-color);
             font-weight: 600;
             padding: 0.6rem 1.5rem;
             transition: all 0.4s ease;
@@ -66,16 +48,50 @@
 
         .btn-member:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
         }
 
-        /* Animasi untuk icon */
-        .nav-link i {
-            transition: transform 0.3s ease;
+        footer.bg-dark {
+            background-color: var(--dark-color) !important;
         }
 
-        .nav-link:hover i {
-            transform: scale(1.2);
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--cream-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--cream-color);
+        }
+
+        .nav-link {
+            color: var(--cream-color) !important;
+        }
+
+        .nav-link:hover {
+            background: rgba(222, 184, 135, 0.2);
+        }
+
+        .nav-link.active {
+            background: rgba(222, 184, 135, 0.3);
+        }
+
+        .btn-outline-success {
+            color: var(--light-brown);
+            border-color: var(--light-brown);
+        }
+
+        .btn-outline-success:hover {
+            background-color: var(--light-brown);
+            border-color: var(--light-brown);
+            color: var(--dark-color);
+        }
+
+        .text-warning {
+            color: var(--light-brown) !important;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -87,9 +103,9 @@
             <a class="navbar-brand d-flex align-items-center" href="{{ route('beranda') }}">
                 <i class="fas fa-book-reader brand-icon me-2"></i>
                 <div class="d-flex flex-column">
-                    <span class="d-none d-md-inline" style="font-size: 1.3rem;">Ruang Literasi</span>
-                    <span class="d-none d-md-inline small text-warning" style="margin-top: -5px;">Kaliurang</span>
-                    <span class="d-inline d-md-none">RLK</span>
+                    <span class="d-none d-md-inline" style="font-size: 1.3rem;">PUSTAKA ANGKU NAVIS</span>
+                    <span class="d-none d-md-inline small text-warning" style="margin-top: -5px;">RLK</span>
+                    <span class="d-inline d-md-none">PAN</span>
                 </div>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -145,8 +161,8 @@
                     <div class="d-flex align-items-center mb-3">
                         <i class="fas fa-book-reader fa-2x text-warning me-2"></i>
                         <div class="d-flex flex-column">
-                            <span class="fs-5">Ruang Literasi</span>
-                            <span class="small text-warning">Kaliurang</span>
+                            <span class="fs-5">PUSTAKA ANGKU NAVIS</span>
+                            <span class="small text-warning">RLK</span>
                         </div>
                     </div>
                     <div class="mb-3">
